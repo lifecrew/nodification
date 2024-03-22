@@ -10,7 +10,7 @@
     - 동일한 가상환경을 사용하는 프로젝트에서 이 `myproject`(가명) 을 임포트해 사용할 수 있습니다. 이때, 현재 프로젝트 폴더 내에서 파일을 수정하면, 링크가 걸려 있기 때문에 `myproject` 를 사용하는 다른 프로젝트에서도 별도의 업데이트 없이 곧바로 수정내용이 반영됩니다. 물론, 이미 특정 모듈을 불러왔다면 파이썬을 닫았다가 다시 켜야 합니다.
 2. 디스코드를 사용하는 경우, 깃허브 액션 secret 변수 `DISCORD_WEBHOOK_URL` 을 지정합니다.
     - 알림을 보내고 싶은 디스코드 채널의 웹훅 URL을 값으로 등록합니다.
-    - 관련 액션은 [notification.yml](.github/workflows/notification.yml) 입니다.
+    - 관련 액션은 [ci-discord-noti.yml](.github/workflows/ci-discord-noti.yml) 입니다.
 
 ## `Makefile`
 
