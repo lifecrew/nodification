@@ -1,4 +1,4 @@
-PROJECT = myproject
+PROJECT = nodification
 
 all: install lint test format
 

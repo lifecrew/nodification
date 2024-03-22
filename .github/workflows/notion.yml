@@ -1,0 +1,58 @@
+name: Run notion.py every 10 minutes
+
+on:
+  schedule:
+    # 매시간 0분, 10분, 20분, 30분, 40분, 50분에 실행
+    - cron: '*/10 * * * *'
+
+jobs:
+  check-kanban-board:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: make install-without-venv
+
+      - name: Send Notification to Discord
+        run: python3 -m nodification.examples.kanban
+
+  check-project-note:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: make install-without-venv
+
+      - name: Send Notification to Discord
+        run: python3 -m nodification.examples.project
+
+  check-permanent-note:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: make install-without-venv
+
+      - name: Send Notification to Discord
+        run: python3 -m nodification.examples.permanent

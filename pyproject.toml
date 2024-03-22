@@ -3,9 +3,9 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "myproject"
+name = "nodification"
 version = "0.1.0"
-description = ""
+description = "Send discord channel notification regularly by anything"
 authors = [
     {name = "Janghoo Lee", email = "dlwkdgn1@naver.com"}
 ]
@@ -15,7 +15,12 @@ classifiers = [
 ]
 requires-python = ">=3.8"
 dependencies = [
+    "pytz",
     "PyYAML",
+    "python-dotenv",
+    "notion-client",
+    "discord.py",
+    "discord-webhook",
 ]
 
 [project.optional-dependencies]
