@@ -1,4 +1,4 @@
-name: Discord Notification
+name: CI - 디스코드 알림
 
 # NOTE: 브랜치 지정 방법
 # https://stackoverflow.com/questions/57699839/github-actions-how-to-target-all-branches-except-master
