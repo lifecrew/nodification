@@ -1,0 +1,41 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "myproject"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Janghoo Lee", email = "dlwkdgn1@naver.com"}
+]
+readme = "README.md"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "PyYAML",
+]
+
+[project.optional-dependencies]
+dev = [
+    "flit",
+    "pylint",
+    "yapf",
+]
+
+# pyproject.toml is a new configuration file defined in PEP 518.
+# It is design to store build system requirements, but it can also store any
+# tool configuration for your Python project, possibly replacing the need for
+# setup.cfg or other tool-specific files.
+# https://github.com/carlosperate/awesome-pyproject
+
+[tool.yapf]
+indent_width = 4
+based_on_style = 'google'
+COLUMN_LIMIT = 100
+DEDENT_CLOSING_BRACKETS = true
+
+[tool.pylint.FORMAT]
+max-line-length = 100

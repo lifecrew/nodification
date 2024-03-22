@@ -1,0 +1,32 @@
+name: Discord Notification
+
+# NOTE: 브랜치 지정 방법
+# https://stackoverflow.com/questions/57699839/github-actions-how-to-target-all-branches-except-master
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+# NOTE: github 컨텍스트 변수와 디스코드 액션 사용법
+# https://github.com/rjstone/discord-webhook-notify
+# https://docs.github.com/ko/actions/learn-github-actions/contexts
+jobs:
+  discord_notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Notification to Discord
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          username: ${{ github.event.repository.name }}
+          severity: info
+          avatarUrl: https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png
+          text: |
+            **${{ github.ref_name }}** 브랜치에 **${{ github.actor }}**님의 새로운 **${{ github.event_name }}**가 있어요!
+          description: |
+            ${{ github.event.head_commit.message }}
+          footer: |
+            ${{ github.ref_name }}
