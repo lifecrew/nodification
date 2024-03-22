@@ -12,6 +12,14 @@
     - 알림을 보내고 싶은 디스코드 채널의 웹훅 URL을 값으로 등록합니다.
     - 관련 액션은 [ci-discord-noti.yml](.github/workflows/ci-discord-noti.yml) 입니다.
 
+## `.env` 파일 또는 github action secret
+
+- NOTION_API_KEY
+- DISCORD_WEBHOOK_URL
+- NOTION_PERMANENTNOTE_DB_ID
+- NOTION_PROJECTNOTE_DB_ID
+- NOTION_KANBANBOARD_DB_ID
+
 ## `Makefile`
 
 `Makefile`은 다음과 같은 기능들을 가지고 있습니다.

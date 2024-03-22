@@ -1,10 +1,9 @@
 name: 노션이벤트 기반 디스코드 알리미 주기적 트리거
-
+        
 on:
   schedule:
-    # 매시간 0분, 10분, 20분, 30분, 40분, 50분에 실행
-    # NOTE: 이것만 변경한다고 되는 것이 아니라 노션 DB에서 값 가져오는 기준도 바꿔야 함
     - cron: '*/10 * * * *'
+    # NOTE: 이것만 변경한다고 되는 것이 아니라 노션 DB에서 값 가져오는 기준도 바꿔야 함
 
 jobs:
   check-kanban-board:
@@ -22,6 +21,10 @@ jobs:
         run: make install-without-venv
 
       - name: Send Notification to Discord
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          NOTION_KANBANBOARD_DB_ID: ${{ secrets.NOTION_KANBANBOARD_DB_ID }}
         run: python3 -m nodification.examples.kanban
 
   check-project-note:
@@ -39,6 +42,10 @@ jobs:
         run: make install-without-venv
 
       - name: Send Notification to Discord
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          NOTION_PROJECTNOTE_DB_ID: ${{ secrets.NOTION_PROJECTNOTE_DB_ID }}
         run: python3 -m nodification.examples.project
 
   check-permanent-note:
@@ -56,4 +63,8 @@ jobs:
         run: make install-without-venv
 
       - name: Send Notification to Discord
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          NOTION_PERMANENTNOTE_DB_ID: ${{ secrets.NOTION_PERMANENTNOTE_DB_ID }}
         run: python3 -m nodification.examples.permanent
