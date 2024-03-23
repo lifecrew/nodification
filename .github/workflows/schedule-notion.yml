@@ -60,10 +60,10 @@ jobs:
       - name: Set run timestamps as env
         run: |
           if [ -f artifact/first-to-last.txt ]; then
-            echo "FIRST_TO_LAST=$(cat artifact/first-to-last.txt)" >> $GITHUB_ENV
+            echo "EDITED_BEFORE=$(cat artifact/first-to-last.txt)" >> $GITHUB_ENV
           fi
           if [ -f artifact/second-to-last.txt ]; then
-            echo "SECOND_TO_LAST=$(cat artifact/second-to-last.txt)" >> $GITHUB_ENV
+            echo "EDITED_AFTER=$(cat artifact/second-to-last.txt)" >> $GITHUB_ENV
           fi
 
       - name: Send Notification to Discord
@@ -96,10 +96,10 @@ jobs:
       - name: Set run timestamps as env
         run: |
           if [ -f artifact/first-to-last.txt ]; then
-            echo "FIRST_TO_LAST=$(cat artifact/first-to-last.txt)" >> $GITHUB_ENV
+            echo "EDITED_BEFORE=$(cat artifact/first-to-last.txt)" >> $GITHUB_ENV
           fi
           if [ -f artifact/second-to-last.txt ]; then
-            echo "SECOND_TO_LAST=$(cat artifact/second-to-last.txt)" >> $GITHUB_ENV
+            echo "EDITED_AFTER=$(cat artifact/second-to-last.txt)" >> $GITHUB_ENV
           fi
 
       - name: Send Notification to Discord
@@ -132,10 +132,10 @@ jobs:
       - name: Set run timestamps as env
         run: |
           if [ -f artifact/first-to-last.txt ]; then
-            echo "FIRST_TO_LAST=$(cat artifact/first-to-last.txt)" >> $GITHUB_ENV
+            echo "EDITED_BEFORE=$(cat artifact/first-to-last.txt)" >> $GITHUB_ENV
           fi
           if [ -f artifact/second-to-last.txt ]; then
-            echo "SECOND_TO_LAST=$(cat artifact/second-to-last.txt)" >> $GITHUB_ENV
+            echo "EDITED_AFTER=$(cat artifact/second-to-last.txt)" >> $GITHUB_ENV
           fi
 
       - name: Send Notification to Discord
