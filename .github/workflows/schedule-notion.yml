@@ -6,6 +6,36 @@ on:
     # NOTE: 이것만 변경한다고 되는 것이 아니라 노션 DB에서 값 가져오는 기준도 바꿔야 함
 
 jobs:
+  record-times:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    # 이전 아티팩트 다운로드
+    - name: Download previous artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: workflow-run-timestamp
+        path: temp
+
+    # 파일 업데이트 및 새 시간 기록
+    - name: Update and record times
+      run: |
+        mkdir -p artifact
+        # second-to-last.txt 업데이트
+        if [ -f temp/first-to-last.txt ]; then
+          cp temp/first-to-last.txt artifact/second-to-last.txt
+        fi
+        # 현재 시간을 first-to-last.txt에 기록
+        echo `date -u +"%Y-%m-%dT%H:%M:%SZ"` > artifact/first-to-last.txt
+
+    # 아티팩트 업로드
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: workflow-run-timestamp
+        path: artifact/
+
   check-kanban-board:
     runs-on: ubuntu-latest
     steps:
