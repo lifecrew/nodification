@@ -13,13 +13,14 @@ jobs:
 
     # 이전 아티팩트 다운로드
     - name: Download previous artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: workflow-run-timestamp
         path: temp
 
     # 파일 업데이트 및 새 시간 기록
     - name: Update and record times
+      if: success() || failure()
       run: |
         mkdir -p artifact
         # second-to-last.txt 업데이트
@@ -31,7 +32,7 @@ jobs:
 
     # 아티팩트 업로드
     - name: Upload artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: workflow-run-timestamp
         path: artifact/
@@ -49,6 +50,21 @@ jobs:
 
       - name: Install dependencies
         run: make install-without-venv
+
+      - name: Download run timestamps
+        uses: actions/download-artifact@v3
+        with:
+          name: workflow-run-timestamp
+          path: artifact
+
+      - name: Set run timestamps as env
+        run: |
+          if [ -f artifact/first-to-last.txt ]; then
+            echo "FIRST_TO_LAST=$(cat artifact/first-to-last.txt)" >> $GITHUB_ENV
+          fi
+          if [ -f artifact/second-to-last.txt ]; then
+            echo "SECOND_TO_LAST=$(cat artifact/second-to-last.txt)" >> $GITHUB_ENV
+          fi
 
       - name: Send Notification to Discord
         env:
@@ -71,6 +87,21 @@ jobs:
       - name: Install dependencies
         run: make install-without-venv
 
+      - name: Download run timestamps
+        uses: actions/download-artifact@v3
+        with:
+          name: workflow-run-timestamp
+          path: artifact
+
+      - name: Set run timestamps as env
+        run: |
+          if [ -f artifact/first-to-last.txt ]; then
+            echo "FIRST_TO_LAST=$(cat artifact/first-to-last.txt)" >> $GITHUB_ENV
+          fi
+          if [ -f artifact/second-to-last.txt ]; then
+            echo "SECOND_TO_LAST=$(cat artifact/second-to-last.txt)" >> $GITHUB_ENV
+          fi
+
       - name: Send Notification to Discord
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
@@ -91,6 +122,21 @@ jobs:
 
       - name: Install dependencies
         run: make install-without-venv
+
+      - name: Download run timestamps
+        uses: actions/download-artifact@v3
+        with:
+          name: workflow-run-timestamp
+          path: artifact
+
+      - name: Set run timestamps as env
+        run: |
+          if [ -f artifact/first-to-last.txt ]; then
+            echo "FIRST_TO_LAST=$(cat artifact/first-to-last.txt)" >> $GITHUB_ENV
+          fi
+          if [ -f artifact/second-to-last.txt ]; then
+            echo "SECOND_TO_LAST=$(cat artifact/second-to-last.txt)" >> $GITHUB_ENV
+          fi
 
       - name: Send Notification to Discord
         env:
