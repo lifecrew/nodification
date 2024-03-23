@@ -32,6 +32,7 @@ jobs:
 
     # 아티팩트 업로드
     - name: Upload artifacts
+      if: success() || failure()
       uses: actions/upload-artifact@v3
       with:
         name: workflow-run-timestamp
@@ -67,6 +68,7 @@ jobs:
           fi
 
       - name: Send Notification to Discord
+        if: success() || failure()
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
@@ -103,6 +105,7 @@ jobs:
           fi
 
       - name: Send Notification to Discord
+        if: success() || failure()
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
@@ -139,6 +142,7 @@ jobs:
           fi
 
       - name: Send Notification to Discord
+        if: success() || failure()
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
