@@ -1,5 +1,13 @@
 name: 노션이벤트 기반 디스코드 알리미 주기적 트리거
-        
+
+# NOTE: cron이 엄격히 준수되지 않더라도 워크플로가 잘 작동하도록 만들고 싶었으나, 잘 되지 않아서 롤백합니다. (관련 브랜치: main-broken)
+# 잘 되지 않는 이유는 아티팩트라는 결과물이 기본적으로 워크플로들 사이에서 참조가 되는 구조가 아니었기 때문입니다.
+# 더 나은 방법은 아래와 같이 워크플로의 아이디를 받아서
+# https://stackoverflow.com/questions/65724762/getting-info-about-the-last-workflow-run-for-a-specific-id-in-github-actions
+# 이전 워크플로의 아티팩트를 다운로드받도록 하는 것입니다
+# https://stackoverflow.com/questions/60355925/share-artifacts-between-workflows-github-actions
+# 하지만 아마 워크플로의 아이디를 나열하는 과정에서 이전 워크플로의 트리거 시간도 쉽게 받을 수 있지 않을까요
+
 on:
   schedule:
     - cron: '*/10 * * * *'
